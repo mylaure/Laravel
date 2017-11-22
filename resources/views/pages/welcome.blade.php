@@ -1,39 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-        <meta content="yes" name="apple-mobile-web-app-capable">
-        <meta content="black" name="apple-mobile-web-app-status-bar-style">
-        <meta content="telephone=no" name="format-detection">
-        <meta content="email=no" name="format-detection">
-        <link rel="shortcut icon" href="img/favicon.ico">{{-- 注意注意！！！要改 --}}
-        <title>摇一摇</title>
-        
-        <link rel="stylesheet" type="text/css" href="css/index.css"/>
-        {{-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/> --}}
-    </head>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Shake.js</title>
+<style type="text/css">
+body {
+    background: #E9E9E9;
+    color: #333;
+    font: 1em/1.3em "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif; /* 16px / 21px */
+    text-shadow: rgba(255,255,255,0.8) 0 1px 0;
+    text-align: center;
+}
+</style>
+<script type="text/javascript" src="shake.js"></script>
+</head>
+<body>
 
-    <body>
-        <div class="bodymask1"><h2>I am<br />a tester1</h2>
-            <button class="start">START</button>
-        </div>
-        <div class="bodymask"><h2>I am<br />a tester</h2>
-        </div>
+<h1>Shake to Undo</h1>
+<h2>for your mobile web app</h2>
 
-        <div class="shake-box">
-            <div class="shake-upside">
-                <div class="shake-upside-inner"></div>
-            </div>
-            <div class="shake-backimage">
-               <img id="id-shake-image" src="source/monkey.jpg"/>
-            </div>
-            <div class="shake-downside"></div>
-        </div>
-        
-        <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/jquery.fullPage.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/shaked.js" type="text/javascript" charset="utf-8"></script>
-    </body>
+<p>Shake your iPhone/iPad to see a custom action.</p>
+<p>Works on iOS +4.2.1, Android 4.0.3 (default browser), Opera Mobile (Android), BlackBerry PlayBook 2.0</p>
+
+<p><a href="http://dev.w3.org/geo/api/spec-source-orientation">W3C DeviceOrientation Event Specification</a></p>
+
+<script type="text/javascript">
+window.onload = function() {
+
+    //create a new instance of shake.js.
+    var myShakeEvent = new Shake({
+        threshold: 15
+    });
+
+    // start listening to device motion
+    myShakeEvent.start();
+
+    // register a shake event
+    window.addEventListener('shake', shakeEventDidOccur, false);
+
+    //shake event callback
+    function shakeEventDidOccur () {
+
+        //put your own code here etc.
+        alert('Shake!');
+    }
+};
+</script>
+</body>
 </html>
-
